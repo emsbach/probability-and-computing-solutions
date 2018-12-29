@@ -1,0 +1,87 @@
+\textbf{Exercise 1.1}: We flip a fair coin ten times.
+
+\begin{enumerate}
+  \item[(a)] Our sample space $\Omega$ is the set of all possible outcomes of ten
+    fair coin flips. All simple events have equal probability. The sample space has
+    $2^{10}$ simple events, so each of them has probability $2^{-10}$. We are
+    interested in the probability of the event $E_a$ that the number of heads and
+    the number of tails are equal; that is, in the event that there are 5 heads.
+    There are $\binom{10}{5}$ simple events that fulfil this condition. Consequently,
+    \[
+      \pr(E_a) = \binom{10}{5} \cdot 2^{-10} = 252 \cdot 2^{-10} = \frac{63}{256}.
+    \]
+
+  \item[(b)] We are interested in the probability of the event $E_b$ that there are
+    more heads than tails. Let $E_i$ be the event that the number of heads equals
+    $i \in [0, 10]$. Then $E = \bigcup_{i = 6}^{10} E_i$. Since $E_1, E_2,..., E_{10}$
+    are mutually disjoint,
+    \begin{align*}
+      \pr\left(E_b\right)
+        &= \pr\left(\bigcup_{i = 6}^{10} E_i \right)      = \sum_{i=6}^{10} \pr\left(E_i\right) = 2^{-10} \sum_{i=6}^{10} \binom{10}{i} \\
+        &= 2^{-10} \left( 210 + 120 + 45 + 10 + 1\right)  = \frac{193}{512}.
+    \end{align*}
+
+  \item[(c)] We are interested in the probability of the event $E_c$ that the $i$th
+    flip and the $(11 - i)$th flip are the same for $i \in [1,5]$. Let
+    $X_i \in$ \{H, T\} be the outcome of the $i$th flip. Since we are tossing a
+    fair coin, $\pr\left(X_i = \text{H} \right) = \pr\left(X_i = \text{T} \right) = \frac{1}{2}$.
+    For $X_{11-i}$ holds, $\pr\left(X_{11-i} = X_i \right) = \pr\left(X_{11-i}
+    \not= X_i \right) = \frac{1}{2}$. Since the outcome of each toss is independet
+    of the outcome of the other nine tosses,
+    \[
+      \pr\left(E_c\right)
+        = \pr\left(\bigcap_{i=1}^5 X_i = X_{11-i}\right)
+        = 2^{-5}.
+    \]
+
+  \item[(d)] We are interested in the probablity of the event $E_d$ that we flip
+    at least four consecutive heads. Let $i \in [1,10]$ and let $E_i$ be the event
+    that we flip $i$ consecutive heads. Then,
+    \[ \pr\left(E_d\right) = \pr\left(\bigcup_{i=4}^{10} E_i\right).\]
+    We have to consider, that the events $E_1,..., E_{10}$ are not mutually disjoint.
+    For instance, the sequence (H,H,H,H,T,H,H,H,H,H) is element both of the event
+    $E_4$ and $E_5$. Let's have a look at the individual events $E_4,..., E_{10}$
+    there $x \in$ \{H,T\}:
+    \begin{align*}
+      \begin{tabular}{lll}
+        $E_4$ &=  &\{(H,H,H,H,T,x,x,x,x,x), (T,H,H,H,H,T,x,x,x,x), (x,T,H,H,H,H,T,x,x,x), \\
+              &   &\ \,(x,x,T,H,H,H,H,T,x,x), (x,x,x,T,H,H,H,H,T,x), (x,x,x,x,T,H,H,H,H,T), \\
+              &   &\ \,(x,x,x,x,x,T,H,H,H,H)\} \\
+        $E_5$ &= &\{(H,H,H,H,H,T,x,x,x,x), (T,H,H,H,H,H,T,x,x,x), (x,T,H,H,H,H,H,T,x,x), \\
+              &   &\ \,(x,x,T,H,H,H,H,H,T,x), (x,x,x,T,H,H,H,H,H,T), (x,x,x,x,T,H,H,H,H,H)\} \\
+        $E_6$ &=  &\{(H,H,H,H,H,H,T,x,x,x), (T,H,H,H,H,H,H,T,x,x), (x,T,H,H,H,H,H,H,T,x), \\
+              &   &\ \,(x,x,T,H,H,H,H,H,H,T), (x,x,x,T,H,H,H,H,H,H)\} \\
+        $E_7$ &=  &\{(H,H,H,H,H,H,H,T,x,x), (T,H,H,H,H,H,H,H,T,x), (x,T,H,H,H,H,H,H,H,T), \\
+              &   &\ \,(x,x,T,H,H,H,H,H,H,H)\} \\
+        $E_8$ &=  &\{(H,H,H,H,H,H,H,H,T,x), (T,H,H,H,H,H,H,H,H,T), (x,T,H,H,H,H,H,H,H,H)\} \\
+        $E_9$ &=  &\{(H,H,H,H,H,H,H,H,H,T), (T,H,H,H,H,H,H,H,H,H)\} \\
+        $E_{10}$ &=  &\{(H,H,H,H,H,H,H,H,H,H)\}.
+      \end{tabular}
+    \end{align*}
+    Now we can determine the cardinality of $E_4, ..., E_{10}$:
+    \begin{align*}
+      \begin{tabular}{ll}
+        $|E_4| = 2 \cdot 2^5 + 5 \cdot 2^4 = 144$   &$|E_8| = 2 \cdot 2^1 + 1 \cdot 2^0 = 5$ \\
+        $|E_5| = 2 \cdot 2^4 + 4 \cdot 2^3 = 64$    &$|E_9| = 2 \cdot 2^0 = 2$ \\
+        $|E_6| = 2 \cdot 2^3 + 3 \cdot 2^2 = 28$    &$|E_{10}| = 1.$ \\
+        $|E_7| = 2 \cdot 2^2 + 2 \cdot 2^1 = 12$    & \\
+      \end{tabular}
+    \end{align*}
+    The events $E_4 \cup E_5, E_6, E_7, E_8, E_9, E_{10}$ are mutually disjoint.
+    Therefore,
+    \[ \pr\left(E_d\right) = \pr\left(\bigcup_{i=4}^{10} E_i\right)
+      = \pr\left(E_4 \cup E_5 \right) + \sum_{i=6}^{10} \pr\left(E_i\right).\]
+    It holds that
+    \[
+      \pr\left(E_4 \cup E_5 \right)
+      = \pr\left(E_4\right) + \pr\left(E_5 \right) + \pr\left(E_4 \cap E_5 \right)
+      = 2^{-10} \cdot 144 + 2^{-10} \cdot 64 - 2^{-10} \cdot 2
+      = \frac{103}{512}.
+    \]
+    Now, we can compute the probability for event $E_d$:
+    \[ \pr\left(E_d\right)
+      = \pr\left(E_4 \cup E_5 \right) + \sum_{i=6}^{10} \pr\left(E_i\right) \\
+      = \frac{103}{512} + 2^{-10}(28 + 12 + 5 + 1) \\
+      = \frac{63}{256}.
+    \]
+\end{enumerate}
