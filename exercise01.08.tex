@@ -1,0 +1,29 @@
+\textbf{Exercise 1.8}: Let us choose a number uniformly at random from the range
+$[1, 1,000,000]$. Using the inclusion–exclusion principle, we want to determine
+the probability that the number chosen is divisible by one or more of 4, 6, and 9. \\
+Let $E_i$ be the event that the choosen number is divisible by $i\in \mathbb{N}^+$.
+Starting from 1, every $i$-th natural number is divisible by $i$. Therefore
+\begin{align*}
+  \pr\left(E_4\right) &= \frac{\left\lfloor \frac{1,000,001}{4} \right\rfloor}{1,000,001} = \frac{250,000}{1,000,001} \\
+  \pr\left(E_6\right) &= \frac{\left\lfloor \frac{1,000,001}{6} \right\rfloor}{1,000,001} = \frac{166,666}{1,000,001} \\
+  \pr\left(E_9\right) &= \frac{\left\lfloor \frac{1,000,001}{9} \right\rfloor}{1,000,001} = \frac{111,111}{1,000,001}.
+\end{align*}
+A number $n \in \mathbb{N}$ is divisible by two numbers $i,j \in \mathbb{N}^+$
+if ans only if $n$ is divisible by the least common multiple. The least
+common multiple of 4 and 6 is 12, of 4 and 9 is 36, of 6 and 9 is 18 and of 4, 6
+and 9 is 36. Consequently
+\begin{align*}
+  \pr\left(E_4 \cap E_6\right) &= \frac{\left\lfloor \frac{1,000,001}{12} \right\rfloor}{1,000,001} = \frac{83,333}{1,000,001} \\
+  \pr\left(E_4 \cap E_9\right) &= \frac{\left\lfloor \frac{1,000,001}{36} \right\rfloor}{1,000,001} = \frac{27,777}{1,000,001} \\
+  \pr\left(E_6 \cap E_9\right) &= \frac{\left\lfloor \frac{1,000,001}{18} \right\rfloor}{1,000,001} = \frac{55,555}{1,000,001} \\
+  \pr\left(E_4 \cap E_6 \cap E_9\right) &= \frac{\left\lfloor \frac{1,000,001}{36} \right\rfloor}{1,000,001} = \frac{27,777}{1,000,001}.
+\end{align*}
+Applying the inclusion-exclusion principle, we are now able to determine the
+probability that the chosen number is divisible by one or more of 4, 6, and 9.
+\begin{align*}
+  \pr\left(\bigcup_{i\in \{4,6,9\}}E_i\right)
+    &= \sum_{i\in \{4,6,9\}} \pr\left(E_i\right) -
+       \left(\pr\left(E_4 \cap E_6\right) + \pr\left(E_4 \cap E_9\right) + \pr\left(E_6 \cap E_9\right)\right) + \pr\left(E_4 \cap E_6 \cap E_9 \right) \\
+    &= \frac{527,777}{1,000,001} - \frac{166,665}{1,000,001} + \frac{27,777}{1,000,001} \\
+    &= \frac{388,889}{1,000,001}.
+\end{align*}

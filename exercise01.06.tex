@@ -1,0 +1,48 @@
+\textbf{Exercise 1.6}: Balls-and-bin game: We start with one black ball and one
+white ball in a bin. We repeatedly choose one ball from the bin uniformly at
+random, and then put the ball back in the bin with another ball of the same color.
+We repeat until there are $n$ balls in the bin. \\[0,2cm]
+Let $X$ be the number of white balls and $k \in \mathbb{N}$, so that $0 \leq k
+\leq n-2$. We want to show that,
+\[ \pr(X=k+1) = \frac{1}{n-1}. \]
+To model this $(n-2)$-stage balls-and-bin game, we describe the drawing of a white
+ball as the event 1 and and a black ball as the event 0 respectively. Then our
+sample space $\Omega$ can be defined as $\Omega := \Omega_1 \times ... \times
+\Omega_{n-2}$, where $\Omega_j = \{ 0, 1\}$ and $j = 1,...,n-2$. Now one concrete
+balls-and-bin game can be described as an elementary event $\omega =
+(a_1,...,a_{n-2}) \in \Omega$, where $a_j \in \Omega_j$ specifies the $j$-th ball
+that we draw. Then
+\begin{align*}
+  \pr(\omega)
+    &= \pr(a_{n-2}| a_1,...,a_{n-3}) \cdot \pr(a_1,...,a_{n-3}) \\
+    &= \pr(a_1) \cdot \pr(a_2| a_1) \cdot \pr(a_3| a_1,a_2) \cdot ... \cdot \pr(a_{n-2}| a_1,...,a_{n-3}).
+\end{align*}
+Let $p_j(1)$ be the probability that the $j$-th ball that we draw is
+a white ball and $p_j(0)$ the probability that the $j$-th ball is a black one. \\
+Initially there is one white and one black ball in the bin. Therefore,
+\[ p_1(1) = \frac{1}{2} = p_1(0). \]
+Suppose we have drawn $j-1$ balls and there has been $w$ white and $j-1-w$ black
+ones among them. Consequently there are $1 + w$ white balls and $1 + j - 1 - w$
+black balls in the bin before the draw the $j$-th ball. Let
+$\left(a_1,...,a_{j-1}\right)$ be a tuple with $w$ 1's and $(j-1-w)$ 0's, that is
+$\sum_{i=1}^{j-1}a_i = w$. Then
+\begin{align*}
+    p_j(1|a_1,...,a_{j-1}) = \frac{1 + w}{1 + 1 + (j-1)}, \\
+    p_j(0|a_1,...,a_{j-1}) = \frac{1+j-1-w}{1 + 1 + (j-1)}.
+\end{align*}
+Let $\omega = (a_1, ..., a_{n-2}) \in \Omega$, so that $\sum_{j=1}^{n-2}a_j = k$
+and $0 \leq k \leq n-2$. Then
+\[
+  \pr(\omega) = \frac {\prod_{j=0}^{k-1}(1 + j) \prod_{j=0}^{(n-2)-k-1}(1 + j)}
+                      {\prod_{j=0}^{n-3}(1+1+j)}.
+\]
+Since the event $X=k+1$ consists of all tuples $(a_1,...,a_{n-2})$ with
+$\sum_{j=1}^{n-2}a_j = k$ and since each of these tuples has the above probability,
+\begin{align*}
+  \pr(X=k+1)
+    &= \binom{n-2}{k} \cdot \frac {\prod_{j=0}^{k-1}(1 + j) \prod_{j=0}^{(n-2)-k-1}(1 + j)}{\prod_{j=0}^{n-3}(1+1+j)} \\
+    &= \frac{(n-2)!}{k! (n-2-k)!} \cdot \frac{k! \cdot (n-2-k)!}{(n-1)!} \\
+    &= \frac{1}{n-1}.
+\end{align*}
+Hence the number of white balls is equally likely to be any number between 1 and
+$n-1$. \\[0.5cm]

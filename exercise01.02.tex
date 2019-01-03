@@ -1,0 +1,59 @@
+\textbf{Exercise 1.2}: Let $i \in \{ 1,2 \}$ and $X_i$ be the outcome of roll $i$.
+
+\begin{enumerate}
+  \item[(a)] We are interested in the probability of the event that $X_1 = X_2$,
+    that is
+    \[
+      \pr(X_1 = X_2) = \sum_{i=1}^6 \pr(X_1 = i \cap X_2 = i).
+    \]
+    Since the outcomes of the rolls are independent,
+    \begin{align*}
+      \pr(X_1 = X_2)  &= \sum_{i=1}^6 \pr(X_1 = i \cap X_2 = i) \\
+                      &= \sum_{i=1}^6 \pr(X_1 = i) \cdot \pr(X_2 = i) \\
+                      &= 6 \cdot \frac{1}{6} \cdot \frac{1}{6} \\
+                      &= \frac{1}{6}.
+    \end{align*}
+
+  \item[(b)] We are interested in the probability of the event that $X_1 > X_2$,
+    that is
+    \begin{align*}
+      \pr(X_1 > X_2)  &= \sum_{i=1}^6 \pr(X_1 = i \cap X_2 < i) \\
+                      &= \sum_{i=1}^6 \pr(X_1 = i) \cdot \pr(X_2 < i) \\
+                      &= \frac{1}{6} \sum_{i=1}^6 \pr(X_2 < i) \\
+                      &= \frac{1}{6} \sum_{i=1}^6 (i-1) \cdot \frac{1}{6} \\
+                      &= \frac{1}{36} \sum_{i=1}^5 i.
+    \end{align*}
+    Now we can apply the Small Gauss sum formula to get
+    \[
+      \pr(X_1 > X_2) = \frac{1}{36} \sum_{i=1}^5 i
+        = \frac{1}{36} \cdot \frac{5 \cdot (5 + 1)}{2}
+        = \frac{5}{12}.
+    \]
+
+  \item[(c)] We are interested in the probability of the event that $X_1 + X_2$
+    is even. The sum of $X_1$ and $X_2$ is even if and only if either both $X_1$
+    and $X_2$ are even or both $X_1$ and $X_2$ are odd,
+    \[
+      \pr(X_1 + X_2 = 0 \text{  mod }2) = \pr\left(X_1 = X_2 \text{  mod }2\right).
+    \]
+    Since the outcomes of the rolls are independent and  the events $X_i = 0 \text{  mod }2$ and $X_i = 1 \text{  mod }2)$ are disjoint, for $i \in \{ 1,2 \}$,
+    \begin{align*}
+      \pr(X_1 + X_2 = 0 \text{  mod }2)
+         &= \pr((X_1 = 0 \text{  mod }2 \cap X_2 = 0 \text{  mod }2)  \quad \cup \quad (X_1 = 1 \text{  mod }2 \cap X_2 = 1 \text{  mod }2)) \\
+         &= \pr(X_1 = 0 \text{  mod }2 \cap X_2 = 0 \text{  mod }2)     \quad  +   \quad \pr(X_1 = 1 \text{  mod }2 \cap X_2 = 1 \text{  mod }2) \\
+         &= \pr(X_1 = 0 \text{  mod }2) \cdot \pr(X_2 = 0 \text{  mod }2)\quad  +  \quad \pr(X_1 = 1 \text{  mod }2) \cdot \pr(X_2 = 1 \text{  mod }2) \\
+         &= \frac{1}{2} \cdot \frac{1}{2} \quad  +   \quad \frac{1}{2} \cdot \frac{1}{2} \\
+         &= \frac{1}{2}.
+  \end{align*}
+
+  \item[(d)] The value of the product of the dice is in the interval [1,36]. The
+    set $S$ of all perfect squares in this interval equals $\{ 1, 4, 9, 16, 25, 36 \}$.
+    So we are interested in the probability that the product of the dice is an
+    element of $S$, $\pr\left(X_1 \cdot X_2 \in S\right)$. Then one has
+    \[
+      \pr\left(X_1 \cdot X_2 \in S\right)
+        = \sum_{s \in S}\pr\left(X_1 \cdot X_2 = s\right)
+        = \frac{1}{36} + \frac{3}{36} +  \frac{1}{36} +  \frac{1}{36} +  \frac{1}{36} +  \frac{1}{36}\\
+        = \frac{2}{9}.
+    \]
+\end{enumerate}
