@@ -1,1 +1,88 @@
-\textbf{Exercise 1.11}:
+\textbf{Exercise 1.11}: Assume we are trying to send a single bit, either a 0
+ or a 1. When we transmit the bit, it goes through a series of $n$ relays
+ before it arrives. Each relay flips the bit independently with probability $p$.
+ \begin{enumerate}
+   \item[(a)] We are interested in the probabilty to receive the correct bit.
+    If an odd number of relays flips the bit an incorrect bit arrives and if
+    an even number of relays flips the bit the correct bit arrives. Let $k \in
+    \mathbb{N}$ and let $E_k$ be the event that exactly $2 \cdot k$ relays flip
+    the bit. Then
+    \[ \pr\left(\cup_{k=0}^{\left\lfloor n/2 \right\rfloor} E_k \right) \]
+    is the probability to receive the correct bit.
+    Since $E_0,...,E_{\left\lfloor n/2 \right\rfloor}$ are mutually
+    disjoint events,
+    \[
+      \pr\left(\cup_{k=0}^{\left\lfloor n/2 \right\rfloor} E_k \right)
+      = \sum_{k=0}^{\left\lfloor n/2 \right\rfloor} \pr\left( E_k \right).
+    \]
+    Let $k \in \mathbb{N}$. There are $\binom{n}{2k}$ possibilities to choose $2k$
+    relays among the $n$ relays that flip the bit. The probability that $2k$
+    specified relays flip the bit, is $p^{2k}(1-p)^{n-2k}$. Therefore
+    \[ \pr\left(E_k\right) = \binom{n}{2k} p^{2k}(1-p)^{n-2k}, \]
+    and
+    \[
+      \pr\left(\cup_{k=0}^{\left\lfloor n/2 \right\rfloor} E_k \right)
+      = \sum_{k=0}^{\left\lfloor n/2 \right\rfloor} \pr\left( E_k \right)
+      = \sum_{k=0}^{\left\lfloor n/2 \right\rfloor} \binom{n}{2k} p^{2k}(1-p)^{n-2k}.
+    \]
+
+   \item[(b)] Let us say the relay has bias $q$, there $q \in \mathbb{R}$,
+   $q \in [-1, 1]$ if the probability it flips the bit is $(1 - q)/2$. We want
+   to show that sending a bit through two relays with bias $q_1$ and $q_2$ is
+   equivalent to sending a bit through a single relay with bias $q_1q_2$. \\
+   Let $X \in $ \{correct, incorrect\} indicate whether we receive the correct bit
+   after sending it through two relays with bias $q_1$ and $q_2$. Similarly, let
+   $Y \in $ \{correct, incorrect\} indicate whether we receive the correct bit
+   after sending it through one relays with bias $q_1q_2$. According to the
+   definition of the bias of a relay, one has
+   \[ \pr(Y = \text{incorrect}) = \frac{1 - q_1q_2}{2}. \]
+   Let's consider the event $\{ X = \text{incorrect} \}$. This event occurs if and
+   only if exactly one of the two relays flips the bit. Therefore
+   \begin{align*}
+     \pr\left( X = \text{incorrect} \right)
+      &= \frac{1-q_1}{2} \cdot \left(1 - \frac{1-q_2}{2}\right) +
+         \frac{1-q_2}{2} \cdot \left(1 - \frac{1-q_1}{2}\right) \\
+      &= \frac{1-q_1}{2} - \frac{(1-q_1)(1-q_2)}{4} +
+         \frac{1-q_2}{2} - \frac{(1-q_2)(1-q_1)}{4} \\
+      &= \frac{1}{4} \left( 2(1-q_1) - (1-q_1)(1-q_2) + 2(1-q_2) - (1-q_2)(1-q_1) \right) \\
+      &= \frac{1}{2} \left((1-q_1) - (1-q_1)(1-q_2) + (1-q_2) \right) \\
+      &= \frac{1}{2} \left(1 - q_1 - (1 - q_2 - q_1 + q_1q_2) + 1 - q_2 \right) \\
+      &= \frac{1}{2} \left(1 - q_1 - 1 + q_2 + q_1 - q_1q_2 + 1 - q_2 \right) \\
+      &= \frac{1}{2} \left(1 - q_1q_2 \right). \\
+   \end{align*}
+   Hence, $\pr\left( X = \text{incorrect} \right) = \pr\left( Y = \text{incorrect}
+   \right)$, and consequently sending a bit through two relays with bias $q_1$ and
+   $q_2$ is equivalent to sending a bit through a single relay with bias $q_1q_2$.
+
+   \item[(c)] Theorem: The probability you receive the correct bit when it passes
+    through $n$ relays is
+    \[ \frac{1 + (1 - 2p)^n}{2}. \]
+    \textit{Proof}. We show the above theorem by induction over $n \in \mathbb{N}^+$.
+    As the base case, assume that $n = 1$. The probability you receive the correct
+    bit equals the probability that the only relay doesn't flip, that is $(1 - p)$.
+    Since
+    \[ \frac{1 + (1 - 2p)^1}{2} = \frac{2 - 2p}{2} = (1 - p), \]
+    the theorem applies for the base case. \\
+    Let $n \in \mathbb{N}^+$, so that the probability you receive the correct bit
+    when it passes through $n$ relays is $\frac{1 + (1 - 2p)^n}{2}$ (induction
+    hypothesis, IH). We have to show that the theorem also applies for $n+1$
+    relays. Let $E_1$ be the event that the bit is correct after it passes through
+    $n$ relays and the $(n+1)$th relay doesn't flip the bit. Let $E_2$ be the
+    event that the bit is incorrect after it passes through $n$ relays and the
+    $(n+1)$th relay flips the bit. Let $E$ be the event that you receive the correct
+    bit when it passes through $n + 1$ relays. Then $E = E_1 \cup E_2$. Since
+    $E_1$ and $E_2$ are mutually disjoint, one has
+    \begin{align*}
+      \pr(E)
+      &= \pr(E_1) + \pr(E_2) \\
+      &=_{\text{IH}}  \left( \frac{1 + (1 - 2p)^n}{2} \cdot (1 - p) \right) +
+        \left( \left( 1 - \frac{1 + (1 - 2p)^n}{2} \right) \cdot p \right) \\
+      &= \frac{1}{2} \left( (1-p) + (1-p)(1 - 2p)^n \right) +
+        \frac{1}{2} \left( 2p - (p + p(1 - 2p)^n \right) \\
+      &= \frac{1}{2} \left( 1 - p + (1-p)(1 - 2p)^n + 2p - p - p(1 - 2p)^n \right) \\
+      &= \frac{1}{2} \left( 1  + (1 - 2p)^n(1 - p - p) \right) \\
+      &= \frac{1  + (1 - 2p)^{n+1}}{2}.
+    \end{align*}
+    Hence, the probability you receive the correct bit when it passes through $n$
+    relays is $\frac{1 + (1 - 2p)^n}{2}$.
+ \end{enumerate}
