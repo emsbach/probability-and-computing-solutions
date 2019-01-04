@@ -1,0 +1,17 @@
+\textbf{Exercise 1.13}:  Let $D$ be the event that a person has the disorder and
+$\bar{D}$ the event that the person has not the disorder. Our samples space $\Omega$
+comprises the whole population. Obviously $D$ and $\bar{D}$ are mutually disjoint
+sets such that $D \cup \bar{D} = \Omega$. Furthermore, let $P$ be the event that
+a person is tested positive. We can now apply Bayes' Law to compute the probability
+that a person chosen uniformely at random and tested positive has the disorder.
+\[
+  \pr(D|P)
+    = \frac{\pr(P|D) \cdot \pr(D)}{\pr(P|D) \cdot \pr(D) + \pr(P|\bar{D}) \cdot \pr(\bar{D})}
+    = \frac{0.999 \cdot 0.02}{0.999 \cdot 0.02 + 0.005 \cdot 0.98}
+    = \frac{0.01998}{0.02488}
+    = \frac{999}{1244}
+    \approx 0.803.
+\]
+Hence, the probability that a positive tested person has the disorder is
+approximately 0.803.
+\\[0.5cm]
