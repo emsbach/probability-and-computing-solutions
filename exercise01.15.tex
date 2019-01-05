@@ -1,0 +1,22 @@
+\textbf{Exercise 1.15}: Suppose that we roll ten standard six-sided dice.
+Let $n \in \mathbb{N}^+$ and let $E_n$ be the event that the sum of $n$ rolled
+standard six-sided dice is divisible by 6. \\
+We claim that $\pr(E_n) = \frac{1}{6}$. We will prove that statement by induction
+on $n \in \mathbb{N}^+$. As the base case assume that $n=1$. There is exactly one
+possible outcome that is divisible by 6 - namely 6. Therefore $\pr(E_1) = \frac{1}{6}$.
+Let $n \in \mathbb{N}^+$, so that $\pr(E_n) = \frac{1}{6}$ (induction hypothesis,
+IH). Let's consider $\pr(E_{n+1})$. $E_{n+1}$ occurs either when $E_{n+1}$ occurs
+and our $(n+1)$th roll shows a 6, or when $E_{n+1}$ doesn't occur but the sum of
+the first $n$ rolled dice is equal to 6 minus the outcome of the $(n+1)$th roll
+modulo 6. Whatever case occurs, there is exactly one possible outcome of the
+$(n+1)$th rolled dice, so that the total sum is divisble by 6. Therefore
+\[
+  \pr(E_{n+1})
+    = \frac{1}{6} \cdot \pr(E_n) + \frac{1}{6} \cdot \pr(\bar{E_n})
+    =_{\text{IH}} \frac{1}{6} \cdot \frac{1}{6} + \frac{1}{6} \cdot \frac{5}{6}
+    = \frac{1}{6}.
+\]
+Hence, $\pr(E_n) = \frac{1}{6}$ for all $n \in \mathbb{N}^+$. Consequently, the
+probability that the sum of 10 rolled standard six-sided dice is divisible by
+6 is $\frac{1}{6}$.
+\\[0.5cm]
