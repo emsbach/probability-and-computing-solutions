@@ -1,0 +1,18 @@
+\paragraph{Exercise 1.21} We choose a number uniformly at random from the set
+$\{ 1, 2, 3, 4 \}$. Then $\Omega = \{ 1, 2, 3, 4 \}$. Let $X, Y, Z$ be three events,
+such that $X = \{ 1, 2 \}, Y = \{ 2, 3 \}$ and $Z = \{ 1, 3 \}$. Since
+\begin{align*}
+  \pr(X \cap Y) = \pr\left(\{ 2 \}\right) = \frac{1}{4}
+    = \frac{1}{2} \cdot \frac{1}{2} = \pr(X) \cdot \pr(Y), \\
+  \pr(X \cap Z) = \pr\left(\{ 1 \}\right) = \frac{1}{4}
+    = \frac{1}{2} \cdot \frac{1}{2} = \pr(X) \cdot \pr(Z), \\
+  \pr(Y \cap Z) = \pr\left(\{ 3 \}\right) = \frac{1}{4}
+    = \frac{1}{2} \cdot \frac{1}{2} = \pr(Y) \cdot \pr(Z),
+\end{align*}
+$X, Y, Z$ are three random events such that any pair of them is independent.
+However, since
+\[
+  \pr(X \cap Y \cap Z) = \pr(\emptyset) = 0
+    < \left(\frac{1}{2}\right)^3 = \pr(X) \cdot \pr(Y) \cdot \pr(Z)
+\]
+$X, Y$ and $Z$ are not mutually independent.
