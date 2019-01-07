@@ -1,0 +1,26 @@
+\textbf{Exercise 1.18}: Suppose we are given an integer $z \in \{ 0, ..., n-1 \}$
+and want to output a value that equals $F(z)$ with probability at least
+$\frac{1}{2}$. \\
+We use a randomized algorithm that chooses a random number $x \in \{ 0, ..., n-1 \}$.
+It then computes $y = (z - x) \text{ mod }n$ and afterwards uses the lookup table
+to output the value $(F(x) + F(y)) \text{ mod }m$. \\
+If the adversary has not changed the values of $x$ and $y$ we can be sure that
+our algorithm outputs the correct value. The probability that the adversary has
+changed neither $x$ nor $y$ is $\frac{4}{5} \cdot \frac{4}{5} = \frac{16}{25}$.
+Since $\frac{16}{25} \geq \frac{1}{2}$, our algorithm outputs a value that equals
+F(z) with probability at least $\frac{1}{2}$.
+
+Suppose that we are allowed to repeat our initial algorithm three times. Let $i
+\in \{ 1, 2, 3 \}$ and let $a_i$ be the output of the $i$th application of the
+algorithm. We use the following strategy: If at least two outcomes match, we output
+the corresponding value. Otherwise the output $a_1$.  \\
+ Let $C$ be the event that we output the correct answer. To assess $\pr(C)$, we
+consider the probability of the complementary event. The probability that we
+output the wrong value is greater than zero if and only if there are at least
+two wrong outputs among the three applications of our algorithm. The probability
+that there are at least two wrong outputs is $\left(\frac{9}{25}\right)^2$.
+Therefore
+\[ \pr(C) = 1 - \pr(\bar{C})\geq 1 - \left(\frac{9}{25}\right)^2 = \frac{544}{625}.\]
+Hence,the probability $\pr(C)$ that our enhanced algorithm returns the correct
+answer is at least $0.8704$.
+\\[0.5cm]
