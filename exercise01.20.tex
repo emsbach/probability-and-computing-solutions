@@ -1,0 +1,19 @@
+\textbf{Exercise 1.20}: \\[0.2cm]
+\textbf{Theorem 1.10}: If $E_1, E_2, ..., E_n$ are mutually independent, then so
+are $\bar{E_1}, \bar{E_2}, ..., \bar{E_n}$. \\[0.2cm]
+\textit{Proof}. Let $E_1, E_2, ..., E_n$ be mutually independent. Then, for any
+subset $I \subseteq [1, n]$,
+\begin{align*}
+  \pr\left(\bigcap_{i \in I} \bar{E_i}\right)
+    &= \pr\left(\bar{\bigcup_{i \in I} E_i}\right) \\
+    &= 1 - \pr\left(\bigcup_{i \in I} E_i\right) \\
+    &= 1 - \left( \sum_{i \in I}\pr(E_i) - \sum_{i,j \in I, i < j} \pr(E_i \cap E_j) + ... + (-1)^{|I| + 1}\pr\left(\bigcap_{i\in I}E_i\right) \right) \\
+    &= 1 - \left( \sum_{i \in I} \pr(E_i) - \sum_{i,j \in I, i < j} \pr(E_i) \cdot \pr(E_j) + ... + (-1)^{|I| + 1}\prod_{i\in I} \pr(E_i) \right) \\
+    &= 1 - \sum_{i \in I}\pr(E_i) + \sum_{i,j \in I, i < j} \pr(E_i) \cdot \pr(E_j) + ... + (-1)^{|I|}\prod_{i\in I} \pr(E_i) \\
+    &= \prod_{i \in I}\left(1 - \pr(E_i)\right) \\
+    &= \prod_{i \in I}\pr(\bar{E_i}).
+\end{align*}
+We have used De Morgan's law in the first line, the inclusion-exclusion principle
+in the third line and the assumption that $E_1, E_2, ..., E_n$ are mutually
+independent combined with definition 1.3 in the fourth line.
+\\[0.5cm]
