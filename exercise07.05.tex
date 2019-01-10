@@ -1,0 +1,64 @@
+\paragraph{Exercise 7.5} $~$ \\[0.2cm]
+\textbf{Theorem 7.19}: Let $i$ be a state. Then
+\begin{enumerate}
+  \item[(i)] state $i$ is recurrent if and only if
+    $\sum_{n=1}^{\infty} P_{i,i}^n = \infty$, and
+  \item[(ii)] state $i$ is transient if and only if
+    $\sum_{n=1}^{\infty} P_{i,i}^n < \infty$.
+\end{enumerate}
+\textit{Proof}. Let $i$ be a state of a Markov chain. We want to compute, in two
+different ways, the expected number of visits to $i$ conditioned that we are
+starting from state $i$, that is $E\left(\text{number of visits to }i | X_0 =
+i\right)$. \\
+Let $f_i \in [0,1]$, so that $f_i = \sum_{t\geq1}r_{i,i}^t$. Furthermore, let
+$\mathbb{I}_n$ be an indicator random variable, so that
+\[
+    \mathbb{I}_n = \begin{cases}
+      1,  &\text{if the process is at state }i \text{ at time }n; \\
+      0,  &\text{else}.
+  \end{cases}
+\]
+Hence, $\pr\left(\mathbb{I}_n = 1\right) = P_{i,i}^n$. Consider the random variable
+\[ V_i := \sum_{n=1}^{\infty} \mathbb{I}_n,  \]
+which counts the number of returns of the Markov chain to state $i$. On the one
+hand, applying Lemma 2.9, the expectation of $V_i$ can be computed as follows
+\begin{align}
+  \E[V_i]
+    = \sum_{k=1}^{\infty} \pr\left(V_i \geq k \right)
+    = \sum_{k=1}^{\infty} f_i^k.
+\end{align}
+On the other hand, applying the linearity of expectation (Theorem 2.1),
+\begin{align}
+  \E[V_i]
+    = \E\left[\sum_{n=1}^{\infty} \mathbb{I}_n\right]
+    = \sum_{n=1}^{\infty}\E[\mathbb{I}_n]
+    = \sum_{n=1}^{\infty}P_{i,i}^n.
+\end{align}
+We will now consider two different cases. \\
+Assume that state $i$ is recurrent. Then $f_i = \sum_{t\geq1}r_{i,i}^t = 1$ by
+definition of a recurrent state. It follows that $E[V_i] = \infty$ by
+equation (7.1). Hence, $\sum_{n=1}^{\infty}P_{i,i}^n = \infty$ by (7.2). \\
+Assume that state $i$ is transient. Then, $f_i < 1$. Note that $\sum_{k=1}^{\infty}
+f_i^k$ is a geometric series. Since $f_i \not= 1$, $\sum_{k=1}^{\infty} f_i^k$
+converges, that is $E[V_i] < \infty$. Hence, $\sum_{n=1}^{\infty}P_{i,i}^n <
+\infty$. \\[0.3cm]
+\textbf{Theorem 7.20}: If one state in a communicating class is transient
+(respectively, recurrent) then all states in that class are transient
+(respectively, recurrent). \\[0.2cm]
+\textit{Proof}. Let $i$ be a transient state and let $j \leftrightarrow i$.
+Since $i$ and $j$ are communicating, there exist $l,m \in \mathbb{N}$ such that
+$P_{i,j}^l > 0$ and $P_{j,i}^m > 0$. For all $n \in \mathbb{N}$ holds that
+\[ P_{i,j}^l P_{j,j}^n P_{j,i}^m \leq P_{i,i}^{l+n+m}. \]
+Consequently,
+\[
+  \sum_{n=1}^{\infty} P_{j,j}^n
+    \leq \frac{1}{P_{i,j}^l P_{j,i}^m} \sum_{n=1}^{\infty} P_{i,i}^{l+n+m}
+    \leq \frac{1}{P_{i,j}^l P_{j,i}^m} \sum_{n=1}^{\infty} P_{i,i}^n
+    < \infty,
+\]
+where the last inequality uses Theorem 7.19 and our assumption that $i$ is
+transient. Since $\sum_{n=1}^{\infty} P_{j,j}^n < \infty$, $j$ is also a transient
+state. Hence, if one state in a communicating class is transient then all states
+in that class are transient. This is equivalent to the statement that if one
+state in a communicating class is recurrent then all states in that class are
+recurrent.
