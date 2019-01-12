@@ -110,14 +110,14 @@ after $t$ rounds of play.
       = 1,
   \]
   $c_1$ is a valid solution. It holds that
-  \[
+  \begin{align*}
     \frac{1}{c_2} \cdot p + c_2 \cdot (1-p)
-      = \frac{1-p}{1+p} \cdot p + \frac{1+p}{1-p} \cdot (1-p)
-      = \frac{(1-p)p}{1+p} + 1 + p
-      = \frac{p - p^2 + (1+p)^2}{1+p}
-      = \frac{p - p^2 + 1 + 2p + p^2}{1+p}
-      = \frac{1 + 3p}{1 + p}
-  \]
+      &= \frac{1-p}{1+p} \cdot p + \frac{1+p}{1-p} \cdot (1-p) \\
+      &= \frac{(1-p)p}{1+p} + 1 + p \\
+      &= \frac{p - p^2 + (1+p)^2}{1+p} \\
+      &= \frac{p - p^2 + 1 + 2p + p^2}{1+p} \\
+      &= \frac{1 + 3p}{1 + p}
+  \end{align*}
   equals 1 if and only if $p = 0$. However, since $p > 1/2$, $c_2$ is not a valid
   solution. \\
   We have showed that for $c = \frac{p}{1-p}$ holds
