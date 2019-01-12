@@ -22,22 +22,23 @@ Hence, $\pr\left(\mathbb{I}_n = 1\right) = P_{i,i}^n$. Consider the random varia
 \[ V_i := \sum_{n=1}^{\infty} \mathbb{I}_n,  \]
 which counts the number of returns of the Markov chain to state $i$. On the one
 hand, applying Lemma 2.9, the expectation of $V_i$ can be computed as follows
-\begin{align}
+\begin{equation}\label{eq:1}
   \E[V_i]
     = \sum_{k=1}^{\infty} \pr\left(V_i \geq k \right)
     = \sum_{k=1}^{\infty} f_i^k.
-\end{align}
+\end{equation}
 On the other hand, applying the linearity of expectation (Theorem 2.1),
-\begin{align}
+\begin{equation}\label{eq:2}
   \E[V_i]
     = \E\left[\sum_{n=1}^{\infty} \mathbb{I}_n\right]
     = \sum_{n=1}^{\infty}\E[\mathbb{I}_n]
     = \sum_{n=1}^{\infty}P_{i,i}^n.
-\end{align}
+\end{equation}
 We will now consider two different cases. \\
 Assume that state $i$ is recurrent. Then $f_i = \sum_{t\geq1}r_{i,i}^t = 1$ by
 definition of a recurrent state. It follows that $E[V_i] = \infty$ by
-equation (7.1). Hence, $\sum_{n=1}^{\infty}P_{i,i}^n = \infty$ by (7.2). \\
+equation \eqref{eq:1}. Hence, $\sum_{n=1}^{\infty}P_{i,i}^n = \infty$ by
+\eqref{eq:2}. \\
 Assume that state $i$ is transient. Then, $f_i < 1$. Note that $\sum_{k=1}^{\infty}
 f_i^k$ is a geometric series. Since $f_i \not= 1$, $\sum_{k=1}^{\infty} f_i^k$
 converges, that is $E[V_i] < \infty$. Hence, $\sum_{n=1}^{\infty}P_{i,i}^n <

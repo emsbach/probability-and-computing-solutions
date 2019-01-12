@@ -1,0 +1,133 @@
+\paragraph{Exercise 7.20} Gambler’s ruin problem: \\
+Consider the case where the game is not fair; instead, the probability of losing
+a dollar each game is 2/3 and the probability of winning a dollar each game is
+1/3. Suppose that you start with $i$ dollars and finish either when you reach $n$
+or lose it all (i.e. reach 0 dollars). Let $W_t$ be the amount you have gained
+after $t$ rounds of play.
+\begin{enumerate}
+  \item[(a)] We want to show that $\E\left[2^{W_{t+1}}\right] = \E\left[2^{W_t}\right]$.
+  One has,
+  \begin{align*}
+    \E\left[ 2^{W_{t+1}}\right]
+      &= \sum_{j=0}^{n} 2^{j-i} \cdot p_j(t+1) \\
+      &= \sum_{j=0}^n \left( 2^{j-i} \cdot \sum_{k=0}^n p_k(t) P_{k,j} \right) \\
+      &= 2^{-i} \cdot p_1(t) P_{1,0} + 2^{n-i} \cdot p_{n-1}(t) P_{n-1,n} + \sum_{j=1}^{n-1} 2^{j-i} \left( p_{j+1}(t) P_{j+1,j} + p_{j-1}(t) P_{j-1,j} \right) \\
+      &= 2^{-i} \cdot p_1(t) \cdot \frac{2}{3} + 2^{n-i} \cdot p_{n-1}(t) \cdot \frac{1}{3} + \sum_{j=1}^{n-1} 2^{j-i} \left( p_{j+1}(t) \cdot \frac{2}{3} + p_{j-1}(t) \cdot \frac{1}{3} \right) \\
+      &=  \sum_{j=0}^{n-1} \left( 2^{j+1-i} \cdot \frac{1}{2} \cdot p_{j+1}(t) \cdot \frac{2}{3}\right) +
+          \sum_{j=1}^{n} \left( 2^{j-1-i} \cdot 2 \cdot p_{j-1}(t) \cdot \frac{1}{3} \right) \\
+      &=  \frac{1}{3} \sum_{j=0}^{n-1} \left( 2^{j+1-i} \cdot p_{j+1}(t) \right) +
+          \frac{2}{3} \sum_{j=1}^{n} \left( 2^{j-1-i} p_{j-1}(t) \right) \\
+      &=  \frac{1}{3} \sum_{j=0}^{n} \left( 2^{j-i} \cdot p_{j}(t) \right) +
+          \frac{2}{3} \sum_{j=0}^{n} \left( 2^{j-i} p_{j}(t) \right) \\
+      &=  \frac{1}{3} \E\left[2^{W_t}\right] + \frac{2}{3} \E\left[2^{W_t}\right] \\
+      &= \E\left[2^{W_t}\right].
+  \end{align*}
+  The second equality uses the fact that we can determine the probability that the
+  process is at state $i$ at time $t$ by summing over all possible states at time
+  $t - 1$, i.e.
+  \[ p_i(t) = \sum_{j \geq 0} p_j(t-1)P_{j,i}. \]
+  State 0 can be reached in one step only from state 1, state $n$ only from state
+  $n-1$ and for any state $0 < j < n$ holds that $j$ can be reached in one step
+  only from step $j-1$ and $j+1$. The third equality uses this fact to simplify
+  the summation over all states.
+
+  \item[(b)] Let $q$ be the probability of gainining $n-i$ dollars, so that the
+  chain was absorbed into state $n$. Then $1-q$ is the probability of losing all
+  money, so that the chain was absorbed into state 0. By definition,
+  \[
+   \lim_{t \to \infty} P_n^t = q \quad \text{ and } \lim_{t \to \infty} P_0^t = 1-q.
+  \]
+  According to part (a) $\E\left[2^{W_{t+1}}\right] = \E\left[2^{W_t}\right]$ for
+  $t \in \mathbb{N}$. Thus, by induction
+  \begin{align*}
+    \lim_{t \to \infty} \E\left[2^{W_t}\right] = \E\left[2^{W_0}\right] = 2^0 = 1.
+  \end{align*}
+  Since 0 and $n$ are the only absorbing, recurrent states,
+  \begin{align*}
+    \lim_{t \to \infty} \E\left[2^{W_t}\right]
+      = \lim_{t \to \infty} 2^{0-i} p_0(t) + 2^{n-i} p_n(t)
+      = 2^{-i}(1-q) + 2^{n-i}q
+      = 2^{-i}\left(1 - q + 2^n q\right).
+  \end{align*}
+  Thus,
+  \begin{align*}
+    1           &= 2^{-i}\left(1 - q + 2^n q\right) \\
+    2^i         &= 1 - q + 2^n q \\
+    q - 2^n q   &= 1 - 2^i \\
+    q           &= \frac{1-2^i}{1-2^n}.
+  \end{align*}
+  That is, the probability of finishing with 0 dollars when starting at position
+  $i$ is
+  \[ 1 - q
+    = 1 - \frac{1-2^i}{1-2^n}
+    = \frac{1 - 2^n - 1 + 2^i}{1 - 2^n}
+    =  \frac{2^i - 2^n}{1 - 2^n},
+  \]
+  and the probability of finishing with $n$ dollars when starting at position
+  $i$ is
+  \[ q = \frac{1-2^i}{1-2^n}. \]
+
+  \item[(c)] We want to generalize the preceding argument to the case where the
+  probability of losing is $p > 1/2$. In order to do that let us consider
+  $\E\left[c^{W_t}\right]$ for some constant $c$. We can generalize the preceding
+  argument if $\E\left[c^{W_{t+1}}\right] = \E\left[c^{W_t}\right]$. Thus, we
+  have to choose $c$, such that
+  \begin{equation}\label{eq:3}
+    \frac{1}{c} \cdot p + c \cdot (1-p) = 1.
+  \end{equation}
+  One has,
+  \begin{align*}
+    \frac{1}{c} \cdot p + c \cdot (1-p) &= 1 \\
+    c^2(1-p) - c + p                    &= 0 \\
+    c^2 - \frac{1}{1-p} \cdot c + \frac{p}{1-p} &= 0.
+  \end{align*}
+  Applying the pq-formula, one has
+  \begin{align*}
+    c_{1,2}
+      &= \frac{1}{2(1-p)} \pm \sqrt{\frac{1}{4(1-p)^2} - \frac{p}{1-p}} \\
+      &= \frac{1}{2(1-p)} \pm \sqrt{\frac{1 - 4p(1-p)}{4(1-p)^2}} \\
+      &= \frac{1 \pm \sqrt{1 - 4p + 4p^2}}{2(1-p)} \\
+      &= \frac{1 \pm \sqrt{(1 - 2p)^2}}{2(1-p)} \\
+      &= \frac{1 \pm |(1 - 2p)|}{2(1-p)}.
+  \end{align*}
+  Since $p > 1/2$, $1 - 2p < 0$. Therefore, the two possible solutions for $c$ are
+  \[
+    c_{1,2}
+      = \frac{1 \pm |(1 - 2p)|}{2(1-p)}
+      = \frac{1 \pm -(1 - 2p)}{2(1-p)}
+      = \frac{1 \pm -1 + 2p)}{2(1-p)}.
+  \]
+  One has,
+  \[ c_1 = \frac{1 - 1 + 2p}{2(1-p)} = \frac{p}{1-p} \]
+  and
+  \[ c_2 = \frac{1 + 1 + 2p}{2(1-p)} = \frac{1+p}{1-p}. \]
+  To verify this solutions, let us insert $c_1$ and $c_2$ into equation
+  \eqref{eq:3}. Since
+  \[
+    \frac{1}{c_1} \cdot p + c_1 \cdot (1-p)
+      = \frac{1-p}{p} \cdot p + \frac{p}{1-p} \cdot (1-p)
+      = 1 - p + p
+      = 1,
+  \]
+  $c_1$ is a valid solution. It holds that
+  \[
+    \frac{1}{c_2} \cdot p + c_2 \cdot (1-p)
+      = \frac{1-p}{1+p} \cdot p + \frac{1+p}{1-p} \cdot (1-p)
+      = \frac{(1-p)p}{1+p} + 1 + p
+      = \frac{p - p^2 + (1+p)^2}{1+p}
+      = \frac{p - p^2 + 1 + 2p + p^2}{1+p}
+      = \frac{1 + 3p}{1 + p}
+  \]
+  equals 1 if and only if $p = 0$. However, since $p > 1/2$, $c_2$ is not a valid
+  solution. \\
+  We have showed that for $c = \frac{p}{1-p}$ holds
+  $\E\left[c^{W_{t+1}}\right] = \E\left[c^{W_t}\right]$. Hence, we can generalize
+  the argumentation of part (a) and (b), conditioned that the probability of
+  losing is $p > 1/2$. That is, the probability of finishing with 0 dollars when
+  starting at position $i$ is
+  \[  \frac{ \left(\frac{p}{1-p}\right)^i - \left(\frac{p}{1-p}\right)^n}{1 - \left(\frac{p}{1-p}\right)^n}, \]
+  and the probability of finishing with $n$ dollars when starting at position
+  $i$ is
+  \[ \frac{1-\left(\frac{p}{1-p}\right)^i}{1-\left(\frac{p}{1-p}\right)^n}. \]
+
+\end{enumerate}
