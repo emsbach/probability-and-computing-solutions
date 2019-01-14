@@ -1,0 +1,54 @@
+\paragraph{Exercise 5.6}
+Let $i \in \mathbb{N}$ and let $X_i$ be the event that there are $i$ errors on a
+page, that is $X = i$. Assume that $X_n$ occurs. Then $Y$ is a binomial random
+variable with parameters $n$ and $p$, $Y \sim B(n,p)$. Similarly, $Z$ is a binomial
+random variable with parameters $n$ and $(1-p)$, $Z \sim B(n,1-p)$.
+Thus, for any $y,z \in \mathbb{N}$,
+\[ \pr\left(Y = y | X = n\right) = \binom{n}{y} p^y (1-p)^{n-y}, \]
+and
+\[ \pr\left(Z = z | X = n\right) = \binom{n}{z} (1-p)^z p^{n-z}. \]
+Since $X_0, X_1, X_2, ...$ are mutually disjoint events, such that
+$\bigcup_{i \in \mathbb{N}} X_i = \Omega$, we can apply the law of total probability
+to compute the probabilities $\pr(Y = y)$ and $\pr(Z = z)$:
+\begin{align*}
+  \pr(Y = y)
+    &= \sum_{n = y}^{\infty} \pr(Y = y | X = n) \cdot \pr(X = n) \\
+    &= \sum_{n = y}^{\infty} \binom{n}{y} p^y (1-p)^{n-y} \cdot \frac{e^{-\mu}\mu^n}{n!} \\
+    &= e^{-\mu} p^y \sum_{n = y}^{\infty} \frac{n!}{y!(n-y)!} \cdot (1-p)^{n-y} \cdot \frac{\mu^n}{n!} \\
+    &= \frac{e^{-\mu} p^y}{y!} \sum_{n = y}^{\infty} \frac{(1-p)^{n-y}}{(n-y)!} \cdot \mu^n \\
+    &= \frac{e^{-\mu} p^y}{y!} \sum_{n = y}^{\infty} \frac{(1-p)^{n-y}}{(n-y)!} \cdot \mu^n \cdot \frac{\mu^y}{\mu^y} \\
+    &= \frac{e^{-\mu} p^y \mu^y}{y!} \sum_{n = y}^{\infty} \frac{(1-p)^{n-y}}{(n-y)!} \cdot \mu^{n-y} \\
+    &= \frac{e^{-\mu} p^y \mu^y}{y!} \sum_{n = y}^{\infty} \frac{\left((1-p)\mu\right)^{n-y}}{(n-y)!} \\
+    &= \frac{e^{-\mu} p^y \mu^y}{y!} \sum_{n = 0}^{\infty} \frac{\left((1-p)\mu\right)^{n}}{n!} \\
+    &= \frac{e^{-\mu} p^y \mu^y}{y!} \cdot e^{(1-p)\mu} \\
+    &= \frac{e^{-\mu + \mu - \mu p} p^y \mu^y}{y!} \\
+    &= \frac{e^{- \mu p} (\mu p)^y}{y!}, \\
+\end{align*}
+where we have used the Taylor expansion $e^x = \sum_{j=0}^\infty \frac{x^j}{j!}$.
+Therefore, $Y$ is a Poisson random variable with parameter $\mu p$. \\
+Similarly, one has
+\begin{align*}
+  \pr(Z = z)
+    &= \sum_{n = z}^{\infty} \pr(Z = z | X = n) \cdot \pr(X = n) \\
+    &= \sum_{n = z}^{\infty} \binom{n}{z} (1-p)^z p^{n-z} \cdot \frac{e^{-\mu}\mu^n}{n!} \\
+    &= e^{-\mu} (1-p)^z \sum_{n = z}^{\infty} \frac{n!}{z!(n-z)!} \cdot p^{n-z} \cdot \frac{\mu^n}{n!} \\
+    &= \frac{e^{-\mu} (1-p)^z}{z!} \sum_{n = y}^{\infty} \frac{p^{n-z}}{(n-z)!} \cdot \mu^n \cdot \frac{\mu^z}{\mu^z} \\
+    &= \frac{e^{-\mu} \left(\mu(1-p)\right)^z}{z!} \sum_{n = z}^{\infty} \frac{(p\mu)^{n-y}}{(n-y)!} \\
+    &= \frac{e^{-\mu} \left(\mu(1-p)\right)^z}{z!} \sum_{n = 0}^{\infty} \frac{\left(p\mu\right)^{n}}{n!} \\
+    &= \frac{e^{-\mu} \left(\mu(1-p)\right)^z}{z!} \cdot e^{p\mu} \\
+    &= \frac{e^{-\mu + p\mu} \left(\mu(1-p)\right)^z}{z!} \\
+    &= \frac{e^{-\mu(1-p)} \left(\mu(1-p)\right)^z}{z!}. \\
+\end{align*}
+Consequently, $Z$ is a Poisson random variable with parameter $\mu (1-p)$. \\
+Additionally, we want to show that $Y$ and $Z$ are independent. Let $y,z \in \mathbb{N}$.
+Then,
+\begin{align*}
+  \pr(Y = y \cap Z = z)
+    &= \pr(Y = y \cap X = y + z) \\
+    &= \pr(Y = y | X = y + z) \cdot \pr(X = y + z) \\
+    &= \binom{y+z}{y} p^y (1-p)^{(y+z)-y} \cdot \frac{e^{-\mu}\mu^{y+z}}{(y+z)!} \\
+    &= \frac{(y+z)!}{y!(y+z-y)!} p^y (1-p)^z \cdot \frac{e^{-\mu(p + (1-p))}\mu^y \cdot \mu^z}{(y+z)!} \\
+    &= \frac{e^{-\mu p}(\mu p)^y}{y!} \cdot \frac{e^{-\mu(1-p)} \left(\mu (1-p)\right)^z}{z!} \\
+    &= \pr(Y = y) \cdot \pr(Z = z).
+\end{align*}
+Hence, $Y$ and $Z$ are independent.
