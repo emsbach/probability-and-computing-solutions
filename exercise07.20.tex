@@ -10,27 +10,36 @@ after $t$ rounds of play.
   \begin{align*}
     \E\left[ 2^{W_{t+1}}\right]
       &= \sum_{j=0}^{n} 2^{j-i} \cdot p_j(t+1) \\
-      &= \sum_{j=0}^n \left( 2^{j-i} \cdot \sum_{k=0}^n p_k(t) P_{k,j} \right) \\
-      &= 2^{-i} \cdot p_1(t) P_{1,0} + 2^{n-i} \cdot p_{n-1}(t) P_{n-1,n} + \sum_{j=1}^{n-1} 2^{j-i} \left( p_{j+1}(t) P_{j+1,j} + p_{j-1}(t) P_{j-1,j} \right) \\
-      &= 2^{-i} \cdot p_1(t) \cdot \frac{2}{3} + 2^{n-i} \cdot p_{n-1}(t) \cdot \frac{1}{3} + \sum_{j=1}^{n-1} 2^{j-i} \left( p_{j+1}(t) \cdot \frac{2}{3} + p_{j-1}(t) \cdot \frac{1}{3} \right) \\
-      &=  \sum_{j=0}^{n-1} \left( 2^{j+1-i} \cdot \frac{1}{2} \cdot p_{j+1}(t) \cdot \frac{2}{3}\right) +
-          \sum_{j=1}^{n} \left( 2^{j-1-i} \cdot 2 \cdot p_{j-1}(t) \cdot \frac{1}{3} \right) \\
-      &=  \frac{1}{3} \sum_{j=0}^{n-1} \left( 2^{j+1-i} \cdot p_{j+1}(t) \right) +
-          \frac{2}{3} \sum_{j=1}^{n} \left( 2^{j-1-i} p_{j-1}(t) \right) \\
-      &=  \frac{1}{3} \sum_{j=0}^{n} \left( 2^{j-i} \cdot p_{j}(t) \right) +
-          \frac{2}{3} \sum_{j=0}^{n} \left( 2^{j-i} p_{j}(t) \right) \\
-      &=  \frac{1}{3} \E\left[2^{W_t}\right] + \frac{2}{3} \E\left[2^{W_t}\right] \\
-      &= \E\left[2^{W_t}\right].
+      &= \sum_{j=0}^{n} \left( 2^{j-i} \cdot \sum_{k=0}^{n} p_k(t)P_{k,j} \right) \\
+      &= 2^{-i} \cdot p_1(t) \cdot \frac{2}{3} + 2^{-i} \cdot p_0(t) \cdot 1 +
+         2^{n-i} \cdot p_{n-1}(t) \cdot \frac{1}{3} + 2^{n-i} \cdot p_n(t) \cdot 1 + \\
+         &\quad\  2^{1-i} \cdot p_2(t) \cdot \frac{2}{3} +
+         2^{(n-1)-i} \cdot p_{n-2}(t) \cdot \frac{2}{3} +
+         \sum_{j=2}^{n-2} 2^{j-i} \cdot \left( p_{j+1}(t) \cdot \frac{2}{3} + p_{j-1}(t) \cdot \frac{1}{3} \right) \\
+      &= \left( \sum_{j=0}^{n-2} 2^{j-i} \cdot p_{j+1}(t) \cdot \frac{2}{3} \right) +
+         \left( \sum_{j=2}^{n} 2^{j-i} \cdot p_{j-1}(t) \cdot \frac{1}{3} \right) +
+         2^{-i} \cdot p_0(t) + 2^{n-i} \cdot p_n(t) \\
+      &= \left( \sum_{j=1}^{n-1} 2^{j-1-i} \cdot p_{j}(t) \cdot \frac{2}{3} \right) +
+         \left( \sum_{j=1}^{n-1} 2^{j+1-i} \cdot p_{j}(t) \cdot \frac{1}{3} \right) +
+         2^{-i} \cdot p_0(t) + 2^{n-i} \cdot p_n(t) \\
+      &= \frac{1}{3} \left( \sum_{j=1}^{n-1} 2^{j-i} \cdot p_{j}(t) \right) +
+         \frac{2}{3} \left( \sum_{j=1}^{n-1} 2^{j-i} \cdot p_{j}(t) \right) +
+         2^{-i} \cdot p_0(t) + 2^{n-i} \cdot p_n(t) \\
+      &= \left( \sum_{j=1}^{n-1} 2^{j-i} \cdot p_{j}(t) \right) +
+         2^{-i} \cdot p_0(t) + 2^{n-i} \cdot p_n(t) \\
+      &= \sum_{j=0}^{n} 2^{j-i} \cdot p_{j}(t) \\
+      &= \E\left[2^{W_t}\right]
   \end{align*}
   The second equality uses the fact that we can determine the probability that the
   process is at state $i$ at time $t$ by summing over all possible states at time
   $t - 1$, i.e.
   \[ p_i(t) = \sum_{j \geq 0} p_j(t-1)P_{j,i}. \]
-  State 0 can be reached in one step only from state 1, state $n$ only from state
-  $n-1$ and for any state $0 < j < n$ holds that $j$ can be reached in one step
-  only from step $j-1$ and $j+1$. The third equality uses this fact to simplify
-  the summation over all states.
-
+  To be in state 0 at time $t+1$ we have to be in state 0 at time $t$ or we have
+  to be in state 1 at time $t$. State $n$ can be reached in one step only from state
+  $n-1$ or from state $n$. State $1$ can only be reached from step $2$ and state
+  $n-1$ only from state $n-2$. For any state $2 \leq j \leq n-2$ holds that $j$
+  can be reached in one step only from step $j-1$ and $j+1$. The third equality
+  uses this fact to specify the summation over all states.
   \item[(b)] Let $q$ be the probability of gainining $n-i$ dollars, so that the
   chain was absorbed into state $n$. Then $1-q$ is the probability of losing all
   money, so that the chain was absorbed into state 0. By definition,
