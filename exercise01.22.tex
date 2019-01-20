@@ -1,0 +1,31 @@
+\paragraph{Exercise 1.22}
+\begin{enumerate}
+  \item[(a)] If each $1 \leq i \leq n$ is chosen independently and uniformly at
+  random with probability $1/2$, then each of the $2^n$ possible subsets of
+  $\{ 1, ..., n \}$ is chosen with probability $2^{-n}$, giving the statement.
+
+  \item[(b)] Let us consider $\pr\left( X \subseteq Y \right)$. $Y$ is a superset
+  of $X$ if and only if all elements of $X$ are also elements of $Y$. Let $X$ be
+  a particular subset of $\{ 1, ..., n \}$. In order to generate a superset of $X$
+  our coin has to land heads for all elements added to $X$. Therefore the probability
+  that $Y$ is a superset of the particular set $X$ is $2^{-|X|}$, and
+  \[ \pr\left( X \subseteq Y \right) = \sum_{X \in \mathcal{P}\left(\{1, ..., n\}\right)} 2^{-|X|}.\]
+  Since there are $\binom{n}{i}$ subsets of $\{ 1, ..., n \}$ with exactly $i$
+  elements,
+  \[ \pr\left( X \subseteq Y \right)
+  = \sum_{X \in \mathcal{P}\left(\{1, ..., n\}\right)} 2^{-|X|}
+  = \sum_{i=0}^n \binom{n}{i} \cdot \left(\frac{1}{2}\right)^{i}
+  = \left( \frac{1}{2} + 1 \right)^n
+  = \left( \frac{3}{2} \right)^n,\]
+  where we used the binomial formula to achieve the third equation.
+  Furthermore, we want to determine $\pr\left( X \cup Y = \{ 1, ..., n \}\right)$.
+  Again, consider the situation there $X$ is a particular subset of $\{ 1, ..., n \}$.
+  $X \cup Y = \{ 1, ..., n \}$ if and only if $Y$ is a superset of $\bar{X}$.
+  The probability that $Y$ is a superset of our particular set $X$ is $2^{n-|X|}$.
+  Consequently one has,
+  \[ \pr\left( X \cup Y = \{ 1, ..., n \}\right)
+  = \sum_{X \in \mathcal{P}\left(\{1, ..., n\}\right)} 2^{n-|X|}
+  = \sum_{i=0}^n \binom{n}{i} \cdot \left(\frac{1}{2}\right)^{n-i}
+  = \left( 1 + \frac{1}{2} \right)^n
+  = \left( \frac{3}{2} \right)^n.\]
+\end{enumerate}
