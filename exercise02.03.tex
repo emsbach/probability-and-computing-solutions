@@ -1,0 +1,17 @@
+\paragraph{Exercise 2.3} Assume we are rolling a fair die. Let $X$ be the value
+of the die. Let $f,g,h$ be functions $\mathbb{R} \to \mathbb{R}$ such that
+\[
+  f(x) = \sqrt{x}; \quad \quad g(x) = 2x; \quad \quad h(x) = x^2.
+\]
+Then,
+\begin{align*}
+  \E\left[ f(X) \right]
+    &= \frac{1}{6} \cdot \sum_{x=1}^6 \sqrt{x} \\
+    &< \sqrt{3.5} = f\left( \E[X] \right); \\
+  \E\left[ g(X) \right]
+    &= \frac{2}{6} \cdot \sum_{x=1}^6 x = \frac{2}{6} \cdot \frac{6(6+1)}{2} = 7 \\
+    &= 2 \cdot 3.5 = g\left( \E[X] \right); \\
+  \E\left[ h(X) \right]
+    &= \frac{1}{6} \cdot \sum_{x=1}^6 \sqrt{x^2} = \frac{1}{6^2} \cdot 6 \cdot 7 \cdot 13 = 15 \frac{1}{6} \\
+    &> 12.25 = 3.5^2 = h\left( \E[X] \right).
+\end{align*}
