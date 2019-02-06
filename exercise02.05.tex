@@ -1,0 +1,15 @@
+\paragraph{Exercise 2.5} Assume that $X$ is a $B(n, 1/2)$ random variable with
+$n \geq 1$. The event that $X$ is even and the event that $X$ is odd are mutually
+disjoint events such that {$X$ even} $\cup$ {$X$ odd} $= \Omega$. Consequently,
+$\pr(2 \mid X) \cup \pr(2 \nmid X) = 1$. Hence, the probability that $X$ is even
+is $1/2$ if and only if $\pr(2 \mid X) - \pr(2 \nmid X) = 0$.
+By the binomial theorem one has,
+\begin{align*}
+  \pr(2 \mid X) - \pr(2 \nmid X)
+    &= \sum_{i=0}^{n} (-1)^i \pr(X = i) \\
+    &= \sum_{i=0}^{n} (-1)^i \cdot \binom{n}{i} \frac{1}{2^n} \\
+    &= \frac{1}{2^n} \cdot \sum_{i=0}^{n} (-1)^i \cdot 1^{n-i} \cdot \binom{n}{i} \\
+    &= \frac{1}{2^n} \cdot (-1 + 1)^n \\
+    &= 0.
+\end{align*}
+Hence, the probability that $X$ is even is $1/2$.
