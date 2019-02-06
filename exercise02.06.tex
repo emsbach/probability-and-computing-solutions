@@ -1,0 +1,47 @@
+\paragraph{Exercise 2.6}
+\begin{enumerate}
+  \item[(a)]
+    \begin{align*}
+      \E\left[ X | X_1 \text{ is even} \right]
+        &= \sum_{x=3}^{12} x \cdot \pr\left( X = x | X_1 \text{ is even} \right) \\
+        &= \sum_{x=3}^{12} x \cdot \frac{\pr\left( X = x \cap X_1 \text{ is even} \right)}{\pr\left( X_1 \text{ is even} \right)} \\
+        &= 2 \cdot \sum_{x=3}^{12} x \cdot \pr\left( X = x \cap X_1 \text{ is even} \right) \\
+        &= 2 \cdot \left( \frac{3}{36} + \frac{4}{36} + \frac{5 \cdot 2}{36} + \frac{6 \cdot 2}{36} + \frac{7 \cdot 3}{36} + \frac{8 \cdot 3}{36} + \frac{9 \cdot 2}{36} + \frac{10 \cdot 2}{36} + \frac{11}{36} + \frac{12}{36} \right) \\
+        &= 2 \cdot \frac{15}{4} \\
+        &= 7.5.
+    \end{align*}
+
+  \item[(b)]
+    \begin{align*}
+      \E\left[ X | X_1 = X_2 \right]
+        &= \sum_{x=2}^{12} x \cdot \pr\left( X = x | X_1 = X_2 \right) \\
+        &= \sum_{x=1}^{6} 2x \cdot \frac{\pr\left( X = 2x \cap X_1 = X_2 \right)}{\pr\left( X_1 = X_2 \right)} \\
+        &= 6 \cdot \sum_{x=1}^{6} 2x \cdot \pr\left( X = 2x \cap X_1 = X_2 \right) \\
+        &= 6 \cdot \left( \frac{2}{36} + \frac{4}{36} + \frac{6}{36} + \frac{8}{36} + \frac{10}{36} + \frac{12}{36} \right) \\
+        &= 6 \cdot \frac{7}{6} \\
+        &= 7.
+    \end{align*}
+
+  \item[(c)]
+    \begin{align*}
+      \E\left[ X_1 | X = 9 \right]
+        &= \sum_{x=3}^{6} x \cdot \pr\left( X_1 = x | X = 9 \right) \\
+        &= \sum_{x=3}^{6} x \cdot \frac{\pr\left( X_1 = x \cap X = 9 \right)}{\pr\left( X = 9 \right)} \\
+        &= 9 \cdot \sum_{x=3}^{6} x \cdot \pr\left( X_1 = x \cap X = 9 \right) \\
+        &= 9 \cdot \left( \frac{3}{36} + \frac{4}{36} + \frac{5}{36} + \frac{6}{36} \right) \\
+        &= 9 \cdot \frac{1}{2} \\
+        &= 4.5.
+    \end{align*}
+
+  \item[(d)] Let $k$ be in the range [2,12].
+    \begin{align*}
+      \E\left[ X_1 - X_2 | X = k \right]
+        &= \sum_{x = \max(1, k-6)}^{\min(6, k-1)} x - (k - x) \cdot \pr\left( X_1 = x | X = k \right) \\
+        &= \sum_{x = \max(1, k-6)}^{\min(6, k-1)} \left(x - (k - x)\right) \cdot \frac{\pr\left( X_1 = x \cap X = k \right)}{\pr(X = k)} \\
+        &= \pr(X = k)^{-1} \cdot \sum_{x = \max(1, k-6)}^{\min(6, k-1)} (2x - k) \cdot \pr\left( X_1 = x \cap X_2 = k - x \right) \\
+        &= \pr(X = k)^{-1} \cdot \sum_{x = \max(1, k-6)}^{\min(6, k-1)} (2x - k) \cdot \frac{1}{36} \\
+        &= \pr(X = k)^{-1} \cdot \frac{1}{36} \cdot \sum_{x = \max(1, k-6)}^{\min(6, k-1)} (2x - k)  \\
+        &= \pr(X = k)^{-1} \cdot \frac{1}{36} \cdot 0 \\
+        &= 0.
+    \end{align*}
+\end{enumerate}
