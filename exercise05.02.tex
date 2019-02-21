@@ -1,0 +1,43 @@
+\paragraph{Exercise 5.2} Let us start by calculating how many people we would
+need to have in a room before it was more likely than not that two had the
+same last four digits. It is easier to think about the configuration where
+people do not share a password than about configurations where some two people
+do. The first person in the room has a password. The probability that the second
+person has a different password is $\left(1- \frac{1}{4^{10}}\right)$. The
+probability that the third person in the room then has a password dofferent from
+the first two, given that the first two people have different passwords, is
+$\left(1- \frac{2}{4^{10}}\right)$. Continuing on, the probability that the
+$kth$ person in the room has a different password than the first $k-1$,
+assuming that the first $k-1$ have different passwords, is
+$\left(1- \frac{k-1}{4^{10}}\right)$. So the probability that $n$ people all
+have different passwords is
+\[
+  \prod_{j=1}^{n-1} \left( 1 - \frac{j}{4^{10}}\right).
+\]
+Using that $1 - \frac{k}{n} \approx e^{-\frac{k}{n}}$ when $k \ll n$, we see that
+if $n$ is small compared to $4^{10}$ then
+\[
+  \prod_{j=1}^{n-1} \left( 1 - \frac{j}{4^{10}}\right)
+  /approx \prod_{j=1}^{n-1} e^{-\frac{j}{4^{10}}}
+  = \exp \left\{ - \sum_{j=1}^{n-1} \frac{j}{4^{10}} \right\}
+  = e^{-\frac{(n-1)n}{2 \cdot 4^{10}}}
+  \approx e^{-\frac{n^2}{2 \cdot 4^{10}}}.
+\]
+Hence the value for $n$ at which the probability that $n$ people all have
+different passwords is smaller than $1/2$ is approxuimately given by the
+unequality
+\[
+  e^{-\frac{n^2}{2 \cdot 4^{10}}} < \frac{1}{2}
+  \Leftrightarrow e^{\frac{n^2}{2 \cdot 4^{10}}} > 2
+  \Leftrightarrow \frac{n^2}{2 \cdot 4^{10}} > \ln(2)
+  \Leftrightarrow n > \sqrt{2 \cdot 4^{10} \cdot \ln(2)}.
+\]
+Therefore, with 1206 people in a room the probability that two of them have
+the same password is greater than $1/2$. \\
+Similarly one can argue that $\sqrt{2 \cdot 9^{10} \cdot \ln(2)} \approx 69,524$
+numbers can be issued before it will be more likely than not that there is a
+duplicate number. \\
+If Social Security numbers had 13 digits we would still nee 1206 people in a room
+before it is more likely than not that two have the same password. However, we
+could issue $\sqrt{2 \cdot 13^{10} \cdot \ln(2)} \approx 437,164$ numbers before
+it is more likely than not that there is a duplicate number.
