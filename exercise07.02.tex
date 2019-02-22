@@ -1,0 +1,29 @@
+\paragraph{Exercise 7.2} We can observe that
+\[
+  P_{0,0}^{t+1} = P_{0,0}^t \cdot p + P_{0,1}^t \cdot (1 - p)
+  \quad and \quad
+  P_{0,1}^t = 1 - P_{0,0}^t.
+\]
+From this, we can derive the recursion
+\[
+  P_{0,0}^{t} = (2p-1)P_{0,0}^{t-1} + (1-p)
+\]
+for $t \in \mathbb{N}^+$ and $P_{0,0}^0 = 1$. The solution for this recursion is
+\begin{align*}
+  P_{0,0}^t
+  &= (2p-1)^{t} \cdot P_{0,0}^{t-t} + (1-p) \sum_{j=0}^{t-1}(2p-1)^j \\
+  &= (2p-1)^{t} + (1-p) \sum_{j=0}^{t-1}(2p-1)^j.
+\end{align*}
+In the case $p = 1$, one has
+\[
+  P_{0,0}^t
+    = (2p-1)^{t} + (1-p) \cdot t
+    = 1.
+\]
+In the case $p < 1$, one has
+\[
+  P_{0,0}^t
+    = (2p-1)^{t} + (1-p) \frac{1-(2p-1)^{t}}{1-(2p-1)}
+    = (2p-1)^{t} + (1-p) \frac{1-(2p-1)^{t}}{2(1-p)}
+    = \frac{(2p-1)^{t} + 1}{2}.
+\]
