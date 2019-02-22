@@ -1,0 +1,12 @@
+\paragraph{Exercise 7.4} Let $i$ be a state. We can observe that, $P_{i,i}^0 = 1$.
+Thus, $i \leftrightarrow i$, and consequently the communicating relation is
+refelxive. \\
+Let $i$ and $j$ be two states, such that $i \leftrightarrow j$. that is, states
+$i$ and $j$ are accessible from each other. Thus, $j \leftrightarrow i$, and
+consequently the communicating relation is symmetric. \\
+Assume that for the tree states $i,j,k$ holds $i \leftrightarrow j$ and
+$j \leftrightarrow k$. Then there exists some integer $n \in \mathbb{N}$, such
+that $P_{i,j}^n\cdot P_{j,k}^n > 0$ and $P_{k,j}^n \cdot P_{j,i}^n > 0$. Hence,
+$i \leftrightarrow k$, and the communicating relation is transitive. \\
+Altogether, we can conclude that the communicating relation is an equivalence
+relation. 
