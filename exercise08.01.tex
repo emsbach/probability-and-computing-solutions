@@ -1,0 +1,81 @@
+\paragraph{Exercise 8.1} Let $X$ and $Y$ be independent, uniform random variables
+on $[0,1]$. We want to determine the density and the distribution function of the
+sum of the two uniform random variables $X$ and $Y$. Let $Z$ be a random variable,
+such that $Z = X + Y$. Hence, we want to determine $f_Z$ and $F_Z$. For all
+$z \in \mathbb{R}$,
+\[
+    F_Z(z) = \int_{- \infty}^{z} f_Z(u) \, du,
+\]
+and
+\[
+    f_Z(z)
+        = \int_{- \infty}^{\infty} f_{X,Y}(x,z-x) \, dx
+        = \int_{- \infty}^{\infty} f_X(x)\cdot f_Y(z-x) \, dx.
+\]
+Furthermore, $f_Z(z) = 0$ for $z < 0$, and also for $z \geq 2$. In regard to the
+case $z \in [0,2]$, we will distinguish two cases.
+\begin{enumerate}
+    \item[(i)] Assume that $z \in [0,1]$. In order to have $f_Y(z-x) = 1$, we need
+    $z-x \geq 0$, that is, $x \leq z$. Consequently, it suffices to integrate from
+    $x=0$ to $x = z$,
+    \[
+        f_z(z)
+            = \int_{0}^{z} f_X(x)\cdot f_Y(z-x) \, dx
+            = \int_{0}^{z} 1 \, dx
+            = z.
+    \]
+
+    \item[(ii)] Assume that $z \in [1,2]$. In order to have $f_Y(z-x) = 1$, we
+    need $z-x \leq 1$, that is, we need $x \geq z-1$. So in this case, we integrate
+    from $z-1$ to 1,
+    \[
+    f_z(z)
+        = \int_{z-1}^{1} f_X(x)\cdot f_Y(z-x) \, dx
+        = \int_{z-1}^{1} 1 \, dx
+        = \left[ x \right]_{z-1}^1
+        = 1 - (z-1)
+        = 2 - z.
+    \]
+\end{enumerate}
+Thus, the density function of $Z$ is defined as
+\[
+    f_Z: z \mapsto
+    \begin{cases}
+        z, &\text{if }z  \in [0,1]; \\
+        2-z, &\text{if }z \in [1,2]; \\
+        0,  &\text{else.}
+    \end{cases}
+\]
+Let us now consider the distribution function of $Z$. $F_Z(z) = 0$ for $z < 0$,
+and $F_Z(z) = 1$ for $z \geq 2$. In regard to the case $z \in [0,2]$, we will
+examine the two cases $z \in [0,1]$ and $z \in [1,2]$.
+\begin{enumerate}
+    \item[(i)] Assume that $z \in [0,1]$.
+    \[
+        F_Z(z)
+            = \int_{- \infty}^{z} f_Z(u) \, du
+            = \int_{0}^{z} u \, du
+            = \left[\frac{u^2}{2}\right]_0^z
+            = \frac{z^2}{2}.
+    \]
+
+    \item[(ii)] Assume that $z \in [1,2]$.
+    \begin{align*}
+        F_Z(z)
+            &= \int_{- \infty}^{z} f_Z(u) \, du
+            = \int_{0}^{1} u du + \int_{1}^{z} 2-u \, du \\
+            &= \left[\frac{u^2}{2}\right]_0^1 + \left[2u -  \frac{u^2}{2}\right]_1^z
+            = \frac{1}{2} + 2z - \frac{z^2}{2} - 2 + \frac{1}{2}
+            = - \frac{z^2}{2} + 2z - 1.
+    \end{align*}
+\end{enumerate}
+Thus, the distribution function of $Z$ is given by
+\[
+    F_Z: z \mapsto
+    \begin{cases}
+        0,                          &\text{if }z  < 0; \\
+        \frac{z^2}{2},              &\text{if }z \in [0,1]; \\
+        - \frac{z^2}{2} + 2z - 1,   &\text{if }z \in [1,2]; \\
+        1,                          &\text{if }z > 2.
+    \end{cases}
+\]
