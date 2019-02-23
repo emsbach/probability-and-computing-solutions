@@ -1,0 +1,48 @@
+\paragraph{Exercise 8.2} Let $X$ and $Y$ be independent, exponentially distributed
+random variables with parameter 1. Let $Z$ be a random variable,
+such that $Z = X + Y$. For all $z \in \mathbb{R}$,
+\[
+    F_Z(z) = \int_{- \infty}^{z} f_Z(u) \, du,
+\]
+and
+\[
+    f_Z(z)
+        = \int_{- \infty}^{\infty} f_{X,Y}(x,z-x) \, dx
+        = \int_{- \infty}^{\infty} f_X(x)\cdot f_Y(z-x) \, dx.
+\]
+Clearly, $f_Z(z) = 0$ for $z < 0$. Consider the case $z \geq 0$. In order to have
+$f_Y(z-x) \not= 0$, we need $z-x \geq 0$, that is, $x \leq z$. Consequently, it
+suffices to integrate from $x=0$ to $x = z$,
+\[
+    f_z(z)
+        = \int_{0}^{z} f_X(x)\cdot f_Y(z-x) \, dx
+        = \int_{0}^{z} e^{-x} \cdot e^{-(z-x)} \, dx
+        = \int_{0}^{z} e^{-x-(z-x)} \, dx
+        = e^{-z} \int_{0}^{z} 1 \, dx
+        = z \cdot e^{-z}.
+\]
+Thus, the density function of $Z$ is defined as
+\[
+    f_Z: z \mapsto
+    \begin{cases}
+        z \cdot e^{-z}, &\text{if }z  \geq 0; \\
+        0,  &\text{else.}
+    \end{cases}
+\]
+Let us now consider the distribution function of $Z$. $F_Z(z) = 0$ for $z < 0$.
+In regard to the case $z \geq 0$, one has
+\[
+    F_Z(z)
+        = \int_{- \infty}^{z} f_Z(u) \, du
+        = \int_{0}^{z} z \cdot e^{-z} \, du
+        = z \cdot e^{-z} \int_{0}^{z} 1 \, du
+        = z^2 \cdot e^{-z}.
+\]
+Thus, the distribution function of $Z$ is given by
+\[
+    F_Z: z \mapsto
+    \begin{cases}
+        z^2 \cdot e^{-z},   &\text{if }z \geq 0; \\
+        0,                  &\text{else.}
+    \end{cases}
+\]
