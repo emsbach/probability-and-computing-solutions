@@ -1,0 +1,65 @@
+\paragraph{Exercise 2.7}
+\begin{enumerate}
+  \item[(a)] For the probability that $X = Y$ holds
+  \begin{align*}
+    \pr\left( X = Y \right)
+      &= \sum_{k=1}^{\infty} \pr(X = k, Y = k) \\
+      &= \sum_{k=1}^{\infty} \pr(X = k) \cdot \pr(Y = k) \\
+      &= \sum_{k=1}^{\infty} (1-p)^{k-1}p \cdot (1-q)^{k-1} q \\
+      &= pq \sum_{k=1}^{\infty} \left((1-p)(1-q)\right)^{k-1} \\
+      &= pq \sum_{k=0}^{\infty} \left((1-p)(1-q)\right)^{k} \\
+      &= pq \cdot \frac{1}{1- \left( (1-p)(1-q)\right)} \\
+      &= \frac{pq}{p - pq + q}.
+  \end{align*}
+
+  \item[(b)] Since geometric random variables take on only nonnegative integer
+  values, one can apply \textbf{Lemma 2.9} to get
+  \begin{align*}
+    \E\left[ \max(X,Y) \right]
+    &= \sum_{k=1}^{\infty} \pr\left( \max(X,Y) \geq k \right) \\
+    &= \sum_{k=1}^{\infty} \pr\left( \{ X \geq k \} \cup \{ Y \geq k \} \right) \\
+    &= \sum_{k=1}^{\infty} \pr(X \geq k) + \pr(Y \geq k) - \pr\left( \{ X \geq k \} \cap \{ Y \geq k \} \right) \\
+    &= \sum_{k=1}^{\infty} \pr(X \geq k) + \pr(Y \geq k) - \pr\left( \{ X \geq k \} \cap \{ Y \geq k \} \right) \\
+    &= \sum_{k=1}^{\infty} \pr(X \geq k) + \pr(Y \geq k) - \pr(X \geq k) \cdot \pr(Y \geq k) \\
+    &= \sum_{k=1}^{\infty} (1-p)^{k-1} + (1-q)^{k-1} - (1-p)^{k-1} \cdot (1-q)^{k-1} \\
+    &= \sum_{k=0}^{\infty} (1-p)^{k} + \sum_{k=0}^{\infty} (1-q)^{k} - \sum_{k=0}^{\infty} \left((1-p)(1-q)\right)^{k}\\
+    &= \frac{1}{1-(1-p)} + \frac{1}{1-(1-q)} - \frac{1}{1-\left((1-p)(1-q)\right)} \\
+    &= \frac{1}{p} + \frac{1}{q} - \frac{1}{p - pq + q}.
+  \end{align*}
+  The fifth equation holds since $X$ and $Y$ are independent.
+
+  \item[(c)] One has,
+  \begin{align*}
+    \pr\left( \min(X,Y) = k \right)
+      &= \pr\left( X=k, Y > k \right) + \pr\left( Y=k, X > k \right) +  \pr\left( X=k, Y=k \right) \\
+      &= (1-p)^{k-1}p  \cdot (1-q)^k + (1-q)^{k-1}q \cdot (1-p)^{k} + (1-p)^{k-1}p \cdot (1-q)^{k-1}q \\
+      &= \left( (1-p)(1-q) \right)^{k-1} \cdot \left( p(1-q) + q(1-p) + pq \right) \\
+      &= \left( (1-p)(1-q) \right)^{k-1} \cdot \left( p(1-q) + q(1-p) + pq \right) \\
+      &= \left( 1 - (p - pq + q) \right)^{k-1} \cdot \left( p - pq + q \right).
+  \end{align*}
+  Thus, $\min(X,Y)$ is a geometrical random variable with parameter $p - pq + q$.
+
+  \item[(d)] Let us consider the probability that $X \leq Y$. That is,
+  \begin{align*}
+    \pr\left( X \leq Y \right)
+      &= \sum_{k=1}^{\infty} \pr(X = k, k \leq Y) \\
+      &= \sum_{k=1}^{\infty} \pr(X = k) \cdot \pr(k \leq Y) \\
+      &= \sum_{k=1}^{\infty} (1-p)^{k-1}p \cdot (1-q)^{k-1} \\
+      &= p \sum_{k=0}^{\infty} \left((1-p)(1-q)\right)^{k} \\
+      &= \frac{p}{p - pq + q}.
+  \end{align*}
+  Consequently,
+  \begin{align*}
+    \E\left[ X \mid X \leq Y \right]
+    &= \sum_{x=1}^{\infty} x \cdot \pr\left( X = x \mid X \leq Y \right) \\
+    &= \sum_{x=1}^{\infty} x \cdot \frac{\pr\left( X = x, X \leq Y \right)}{\pr\left( X \leq Y \right)} \\
+    &= \sum_{x=1}^{\infty} x \cdot \frac{\pr\left( X = x, x \leq Y \right)}{\frac{p}{p - pq + q}} \\
+    &= \sum_{x=1}^{\infty} x \cdot \frac{(1-p)^{x-1}p \cdot (1-q)^{x-1} \cdot (p - pq + q)}{p} \\
+    &= \sum_{x=1}^{\infty} x \cdot \left(1 - (p -  pq + q)\right)^{x-1} \cdot (p - pq + q).
+  \end{align*}
+  The last line equals the expectation of a geometrical random variable with
+  paramter $p - pq + q$. Hence,
+  \[
+    \E\left[ X \mid X \leq Y \right] = \frac{1}{p - pq + q}.
+  \]
+\end{enumerate}
