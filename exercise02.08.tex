@@ -1,0 +1,64 @@
+\paragraph{Exercise 2.8}
+\begin{enumerate}
+  \item[(a)] Let $k \in \mathbb{N}^+$. Furthermore, let $X$ be the number of
+  children Alice and Bob will have, $X_b$ the number of boys and $X_g$ the
+  number of girls. Then, $X = X_b + X_g$. Consider the expected number of girls
+  Alice and Bob will have, that is $\E\left[X_g\right]$. Alice and Bob will have
+  either no girl at all or exactly one girl. In order to have no girl, Alice and
+  Bob have to have $k$ boys. Thus,
+  \[
+    \E\left[X_g\right]
+      = 0 \cdot \pr(X_g = 0) + 1 \cdot \pr(X_g = 1)
+      = 0  \cdot \frac{1}{2^k} + 1 \cdot \left( 1 - \frac{1}{2^k} \right)
+      = 1 - \frac{1}{2^k}.
+  \]
+  Let us now consider the expected number of children Alice and Bob will have,
+  that is $\E[X]$. Alice and Bob will either have $i$ children, with
+  $i \in \{ 1, ..., k-1 \}$, such that there are $i-1$ boys and one girl, or
+  they will have exactly $k$ children. In order to have $k$ children they have
+  to have $k-1$ boys. Therefore,
+  \begin{align*}
+    \E[X]
+      &= k \cdot \frac{1}{2^{k-1}} + \sum_{i = 1}^{k-1} i \cdot \frac{1}{2^{i-1}} \cdot \frac{1}{2} \\
+      &= \frac{k}{2^{k-1}} + \sum_{i = 1}^{k-1} i \cdot \frac{1}{2^{i}}.
+  \end{align*}
+  Note that,
+  \[
+    \sum_{i=1}^{k-1} i \cdot p^{i-1} = \frac{1 - kp^{k-1} + (k-1)p^k}{(1-p)^2}.
+  \]
+  For $p = 1/2$ one has
+  \begin{align*}
+    \sum_{i = 1}^{k-1} i \cdot \frac{1}{2^{i}}
+      &= \frac{1}{2} \cdot \sum_{i = 1}^{k-1} i \cdot \frac{1}{2^{i-1}} \\
+      &= \frac{1}{2} \cdot \left(\frac{1 - k \cdot \left(\frac{1}{2}\right)^{k-1} + (k-1)\cdot \left(\frac{1}{2}\right)^{k}}{\frac{1}{4}}\right) \\
+      &= \frac{1}{2} \cdot \left(4 - k \cdot \left(\frac{1}{2}\right)^{k-3} + (k-1)\cdot \left(\frac{1}{2}\right)^{k-2} \right) \\
+      &= 2 - k \cdot \left(\frac{1}{2}\right)^{k-2} + (k-1)\cdot \left(\frac{1}{2}\right)^{k-1} \\
+      &= 2 - \left( 2k - k + 1 \right) \cdot \left(\frac{1}{2}\right)^{k-1} \\
+      &= 2 - \left( k + 1 \right) \cdot \left(\frac{1}{2}\right)^{k-1}.
+  \end{align*}
+  Consequently,
+  \begin{align*}
+    \E[X]
+      &= \frac{k}{2^{k-1}} + \sum_{i = 1}^{k-1} i \cdot \frac{1}{2^{i}} \\
+      &= k \cdot \left(\frac{1}{2}\right)^{k-1} + 2 - \left( k + 1 \right) \cdot \left(\frac{1}{2}\right)^{k-1} \\
+      &= 2 - \left(\frac{1}{2}\right)^{k-1}.
+  \end{align*}
+  It follows that,
+  \begin{align*}
+    \E\left[X_b\right]
+      &= \E[X] - \E\left[X_g\right] \\
+      &= 2 - \left(\frac{1}{2}\right)^{k-1} - \left( 1 - \frac{1}{2^k} \right) \\
+      &= 2 - \frac{3}{2^k}.
+  \end{align*}
+  Hence, the expected number of female children is $1 - \frac{1}{2^k}$ while the
+  expected number of male children is $2 - \frac{3}{2^k}$.
+
+  \item[(b)] Let $X$ be the number of children that Alice and Bob will have and
+  let $X_b$ be the number of boys among them. Clearly, $X_b = X - 1$. $X$ is a
+  geometrical random varaible with parameter $1/2$. Thus, $\E[X] = 2$.
+  According to the linearity of expectation, one has
+  \[
+    \E\left[X_b\right] = \E[X - 1] = \E[X] - 1 = 1.
+  \]
+  That is, Alice and Bob are expected to have one boy.
+\end{enumerate}
